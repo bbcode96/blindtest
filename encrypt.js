@@ -27,15 +27,6 @@ const INDEX_FILE = path.join(__dirname, 'index.html');
 // Lire le contenu à chiffrer
 let content = fs.readFileSync(CONTENT_FILE, 'utf-8');
 
-// Auto-numérotation des pistes (1, 2, 3, ...)
-let trackCounter = 0;
-content = content.replace(/<span class="track-number">\d+<\/span>/g, () => {
-  trackCounter++;
-  return `<span class="track-number">${trackCounter}</span>`;
-});
-fs.writeFileSync(CONTENT_FILE, content, 'utf-8');
-console.log(`🔢 ${trackCounter} pistes numérotées automatiquement (1 à ${trackCounter})`);
-
 // Paramètres de chiffrement
 const salt = crypto.randomBytes(32);
 const iv = crypto.randomBytes(12);
